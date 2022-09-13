@@ -4,7 +4,7 @@ on:
   pull_request:
   workflow_dispatch:
 jobs:
-  windows-msvc:
+  windows-blender-3.3.0:
     runs-on: windows-2019
     steps:
       - uses: actions/checkout@v2
@@ -12,8 +12,20 @@ jobs:
           submodules: 'recursive'
 
       - name: Blender 3.3.0
-        if: always()
         uses: ./.github/actions/build-windows
         with:
           blender-version: "3.3.0"
+          tests: true
+
+  windows-blender-3.0.0:
+    runs-on: windows-2019
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: 'recursive'
+
+      - name: Blender 3.0.0
+        uses: ./.github/actions/build-windows
+        with:
+          blender-version: "3.0.0"
           tests: true
